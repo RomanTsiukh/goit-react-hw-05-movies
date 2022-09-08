@@ -16,10 +16,12 @@ export const Home = () => {
     <div>
       <h1>Home</h1>
       <ul>
-        {movies.map(({ id, title }) => {
+        {movies.map(movie => {
           return (
-            <li key={id}>
-              <Link to={title}>{title}</Link>
+            <li key={movie.id}>
+              <Link to={`${movie.id}`}>
+                <div>{movie.title}</div>
+              </Link>
             </li>
           );
         })}

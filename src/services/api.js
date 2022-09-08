@@ -17,3 +17,13 @@ export const fetchTrendingMovies = async () => {
     console.log(error);
   }
 };
+
+export const getMovieById = async movieId => {
+  try {
+    const ID = Number(movieId);
+    const response = await axios.get(`${MEDIA_TYPE}/${ID}?api_key=${API_KEY}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
