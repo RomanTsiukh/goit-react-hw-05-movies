@@ -14,7 +14,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="movies/:movieId" element={<MovieDetails />}></Route>
+        <Route path="/movies/:movieId" element={<MovieDetails />}></Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
