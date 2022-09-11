@@ -16,7 +16,7 @@ export const MovieCard = ({ movie }) => {
       <h2>Overview</h2>
       <div>{overview}</div>
       <h3>Genres</h3>
-      <p>{genres.map(a => a.name).join(', ')}</p>
+      <p>{genres.map(genre => genre.name).join(', ')}</p>
     </>
   );
 };

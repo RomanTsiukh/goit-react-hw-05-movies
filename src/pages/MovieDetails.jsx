@@ -35,31 +35,18 @@ export const MovieDetails = () => {
     <>
       {status === 'resolved' && (
         <div>
-          <div p="5">
+          <div>
             <Link to={backLinkHref}>Go back</Link>
             <MovieCard movie={movie} />
             <div>
-              <div
-                as="h2"
-                // textAlign={'center'}
-                fontSize="l"
-                color="orangered"
-                mb="4"
-              >
-                Additional information
-              </div>
-              <div as="ul" display="flex" mb="4">
+              <h2>Additional information</h2>
+              <ul>
                 <li>
                   <Link to="cast" state={backLinkHref}>
                     Cast
                   </Link>
                 </li>
-                <li>
-                  <Link to="reviews" state={backLinkHref}>
-                    Reviews
-                  </Link>
-                </li>
-              </div>
+              </ul>
 
               <Outlet />
             </div>
@@ -67,18 +54,9 @@ export const MovieDetails = () => {
         </div>
       )}
       {status === 'rejected' && (
-        <div as="div" p="4" display="flex">
+        <div>
           <Link to="/">Go home</Link>
-          <div
-            as="b"
-            textAlign="center"
-            mx="auto"
-            mt="5"
-            fontSize="l"
-            color="orangered"
-          >
-            Sorry, there are no details for the movie.
-          </div>
+          <div>Sorry, there are no details for the movie.</div>
         </div>
       )}
     </>
