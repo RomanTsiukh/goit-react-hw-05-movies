@@ -1,57 +1,47 @@
-import { useParams, Outlet, useLocation } from 'react-router-dom';
+import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieById } from 'services/api';
-
 import { MovieCard } from 'components/MovieCard';
-import { Link } from 'react-router-dom';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  const STATUS = {
-    idle: 'IDLE',
-    pending: 'PENDING',
-    resolved: 'RESOLVED',
-    rejected: 'REJECTED',
-  };
-
-  const { idle, pending, resolved, rejected } = STATUS;
-
   const [movie, setMovie] = useState({});
-  const [status, setStatus] = useState(idle);
+  const [status, setStatus] = useState('idle');
 
   useEffect(() => {
-    (async function getMovie() {
+    async function getMovie() {
       try {
-        setStatus(pending);
+        setStatus('pending');
         const movieDetails = await getMovieById(movieId);
-        const MOVIE_DETAILS_AVAILABLE = Object.keys(movieDetails).length !== 0;
-        if (!MOVIE_DETAILS_AVAILABLE) {
-          setStatus(rejected);
+
+        if (Object.keys(movieDetails).length === 0) {
+          setStatus('rejected');
           return;
         }
         setMovie(movieDetails);
-        setStatus(resolved);
+        setStatus('resolved');
       } catch (error) {
         console.log(error);
-        setStatus(rejected);
+        setStatus('rejected');
       }
-    })();
-  }, [movieId, pending, rejected, resolved]);
+    }
+    getMovie();
+  }, [movieId]);
 
   return (
     <>
-      {status === 'RESOLVED' && (
+      {status === 'resolved' && (
         <div>
-          <div as="div" p="5">
-            <Link to={backLinkHref}>Back to movies</Link>
+          <div p="5">
+            <Link to={backLinkHref}>Go back</Link>
             <MovieCard movie={movie} />
             <div>
               <div
                 as="h2"
-                textAlign={'center'}
+                // textAlign={'center'}
                 fontSize="l"
                 color="orangered"
                 mb="4"
@@ -76,7 +66,7 @@ export const MovieDetails = () => {
           </div>
         </div>
       )}
-      {status === 'REJECTED' && (
+      {status === 'rejected' && (
         <div as="div" p="4" display="flex">
           <Link to="/">Go home</Link>
           <div
