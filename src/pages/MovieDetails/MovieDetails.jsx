@@ -1,7 +1,7 @@
 import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieById } from 'services/api';
-import { MovieCard } from 'components/MovieCard';
+import { MovieCard } from 'components/MovieCard/MovieCard';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -43,6 +43,11 @@ export const MovieDetails = () => {
                 <li>
                   <Link to="cast" state={backLinkHref}>
                     Cast
+                  </Link>
+                </li>
+                <li>
+                  <Link to="reviews" state={backLinkHref}>
+                    Reviews
                   </Link>
                 </li>
               </ul>

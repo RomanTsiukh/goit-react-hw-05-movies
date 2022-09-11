@@ -30,12 +30,22 @@ export const getMovieById = async movieId => {
 
 export const fetchCast = async movieId => {
   try {
-    const response = await axios.get(`movie/${movieId}/credits`, {
-      params: {
-        api_key: API_KEY,
-      },
-    });
+    const response = await axios.get(
+      `${MEDIA_TYPE}/${movieId}/credits?api_key=${API_KEY}`
+    );
     return response.data.cast;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchReviews = async movieId => {
+  try {
+    const response = await axios.get(
+      `${MEDIA_TYPE}/${movieId}/reviews?api_key=${API_KEY}`
+    );
+    console.log(response.data.results);
+    return response.data.results;
   } catch (error) {
     console.log(error);
   }

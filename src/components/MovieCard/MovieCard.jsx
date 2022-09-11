@@ -1,5 +1,6 @@
 export const MovieCard = ({ movie }) => {
-  const { poster_path, title, vote_average, overview, genres } = movie;
+  const { poster_path, title, vote_average, overview, genres, release_date } =
+    movie;
 
   const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
   const DEFAULT_IMG =
@@ -11,7 +12,9 @@ export const MovieCard = ({ movie }) => {
         src={poster_path ? IMG_PATH + poster_path : DEFAULT_IMG}
         alt={title}
       />
-      <h1>{title}</h1>
+      <h1>
+        {title} ({release_date.slice(0, 4)})
+      </h1>
       <div>User Score: {Math.round(vote_average)}%</div>
       <h2>Overview</h2>
       <div>{overview}</div>
