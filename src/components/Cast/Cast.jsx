@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCast } from 'services/api';
+import { fetchCast } from 'services/api';
 import { IMG_PATH } from 'constants/constants';
 
-const NO_IMAGE = 'https://cdn-icons-png.flaticon.com/512/2922/2922506.png';
+const IF_NO_PHOTO = 'https://cdn-icons-png.flaticon.com/512/2922/2922506.png';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
-  const { movieId } = useParams;
+  const { movieId } = useParams();
 
   useEffect(() => {
-    (async function getCastInfo() {
-      const castInfo = await getCast(movieId);
+    async function getCastInfo() {
+      const castInfo = await fetchCast(movieId);
       setCast(castInfo);
-    })();
+    }
+    getCastInfo();
   }, [movieId]);
 
   return (
@@ -23,7 +24,7 @@ const Cast = () => {
           return (
             <li key={id}>
               <img
-                src={profile_path ? IMG_PATH + profile_path : NO_IMAGE}
+                src={profile_path ? IMG_PATH + profile_path : IF_NO_PHOTO}
                 alt={name}
               />
               <p>{name}</p>

@@ -7,7 +7,6 @@ export const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-
   const [movie, setMovie] = useState({});
   const [status, setStatus] = useState('idle');
 
