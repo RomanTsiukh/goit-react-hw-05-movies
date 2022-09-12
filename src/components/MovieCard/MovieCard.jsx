@@ -1,3 +1,5 @@
+import { Img } from './MovieCard.styled';
+
 export const MovieCard = ({ movie }) => {
   const { poster_path, title, vote_average, overview, genres, release_date } =
     movie;
@@ -8,7 +10,7 @@ export const MovieCard = ({ movie }) => {
 
   return (
     <>
-      <img
+      <Img
         src={poster_path ? IMG_PATH + poster_path : DEFAULT_IMG}
         alt={title}
       />
