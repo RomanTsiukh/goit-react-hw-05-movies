@@ -2,6 +2,10 @@ import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieById } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
+import { Box } from 'components/Box';
+import { Linka, BoxInformation, Title, Href } from './MovieDetails.styled';
+
+import { TbArrowBigLeft } from 'react-icons/tb';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -31,30 +35,31 @@ export const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <>
+    <Box as="div" pt="4">
       {status === 'resolved' && (
         <div>
-          <div>
-            <Link to={backLinkHref}>Go back</Link>
-            <MovieCard movie={movie} />
-            <div>
-              <h2>Additional information</h2>
-              <ul>
-                <li>
-                  <Link to="cast" state={backLinkHref}>
-                    Cast
-                  </Link>
-                </li>
-                <li>
-                  <Link to="reviews" state={backLinkHref}>
-                    Reviews
-                  </Link>
-                </li>
-              </ul>
+          <Linka to={backLinkHref}>
+            <TbArrowBigLeft size="16px" />
+            Go back
+          </Linka>
+          <MovieCard movie={movie} />
 
-              <Outlet />
-            </div>
-          </div>
+          <BoxInformation>
+            <Title>Additional information</Title>
+            <ul>
+              <li>
+                <Href to="cast" state={backLinkHref}>
+                  Cast
+                </Href>
+              </li>
+              <li>
+                <Href to="reviews" state={backLinkHref}>
+                  Reviews
+                </Href>
+              </li>
+            </ul>
+          </BoxInformation>
+          <Outlet />
         </div>
       )}
       {status === 'rejected' && (
@@ -63,6 +68,6 @@ export const MovieDetails = () => {
           <div>Sorry, there are no details for the movie.</div>
         </div>
       )}
-    </>
+    </Box>
   );
 };
