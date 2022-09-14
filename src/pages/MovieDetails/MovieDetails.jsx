@@ -4,7 +4,6 @@ import { getMovieById } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { Box } from 'components/Box';
 import { Linka, BoxInformation, Title, Href } from './MovieDetails.styled';
-
 import { TbArrowBigLeft } from 'react-icons/tb';
 
 export const MovieDetails = () => {

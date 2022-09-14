@@ -50,3 +50,28 @@ export const fetchReviews = async movieId => {
     console.log(error);
   }
 };
+
+// export const fetchKeywordMovie = async () => {
+//   try {
+//     const response = await axios.get(
+//       `search/${MEDIA_TYPE}?api_key=${API_KEY}&query=query&language=en-US&page=1&include_adult=false`
+//     );
+//     return response.data.results;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+export const getMovieBySearch = async query => {
+  try {
+    const response = await axios.get(`search/movie`, {
+      params: {
+        api_key: API_KEY,
+        query,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};

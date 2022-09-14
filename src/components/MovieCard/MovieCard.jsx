@@ -1,5 +1,6 @@
 import { BoxCard, Img, NameMovie, Title, Text } from './MovieCard.styled';
 import { Box } from 'components/Box';
+// import { IMG_PATH } from 'constants/constants';
 
 export const MovieCard = ({ movie }) => {
   const { poster_path, title, vote_average, overview, genres, release_date } =
