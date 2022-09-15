@@ -10,7 +10,7 @@ import Loader from 'components/Loader/Loader';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
+  const backLinkHref = location.state?.from ?? '/movies';
   const [movie, setMovie] = useState({});
   const [status, setStatus] = useState('idle');
 
@@ -48,12 +48,12 @@ const MovieDetails = () => {
             <Title>Additional information</Title>
             <ul>
               <li>
-                <Href to="cast" state={backLinkHref}>
+                <Href to="cast" state={{ from: backLinkHref }}>
                   Cast
                 </Href>
               </li>
               <li>
-                <Href to="reviews" state={backLinkHref}>
+                <Href to="reviews" state={{ from: backLinkHref }}>
                   Reviews
                 </Href>
               </li>

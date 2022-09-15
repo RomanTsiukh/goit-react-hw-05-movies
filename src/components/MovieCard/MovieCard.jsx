@@ -1,14 +1,11 @@
 import { BoxCard, Img, NameMovie, Title, Text } from './MovieCard.styled';
 import { Box } from 'components/Box';
-// import { IMG_PATH } from 'constants/constants';
+import { IMG_PATH, DEFAULT_IMG } from 'constants/constants';
+import PropTypes from 'prop-types';
 
 export const MovieCard = ({ movie }) => {
   const { poster_path, title, vote_average, overview, genres, release_date } =
     movie;
-
-  const IMG_PATH = 'https://image.tmdb.org/t/p/w500/';
-  const DEFAULT_IMG =
-    'https://yt3.ggpht.com/AAKF_677TIvjFz_9xFF0R6PgiVd0kRpEtY6APSxSDRP65nXg8hkn9NFsz2bRd9_Z37DJ9D_b=s900-c-k-c0x00ffffff-no-rj';
 
   return (
     <BoxCard>
@@ -37,4 +34,8 @@ export const MovieCard = ({ movie }) => {
       </Box>
     </BoxCard>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.object,
 };

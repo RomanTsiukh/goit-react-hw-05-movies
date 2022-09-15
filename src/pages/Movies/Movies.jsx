@@ -63,31 +63,29 @@ const Movies = () => {
   return (
     <>
       <div>
-        <div>
-          <Form onSubmit={onSubmit}>
-            <input type="text" name="query" placeholder="Movie search" />
-            <button type="submit">Search</button>
-          </Form>
-          {movies.length !== 0 && (
-            <List>
-              {movies.map(({ id, title, poster_path }) => {
-                return (
-                  <li key={id}>
-                    <Link to={`${id}`} state={{ from: location }}>
-                      <Img
-                        src={poster_path ? IMG_PATH + poster_path : DEFAULT_IMG}
-                        alt={title}
-                        loading="lazy"
-                      />
-                      <p>{title.toUpperCase()}</p>
-                    </Link>
-                  </li>
-                );
-              })}
-            </List>
-          )}
-          {status === 'pending' && <Loader />}
-        </div>
+        <Form onSubmit={onSubmit}>
+          <input type="text" name="query" placeholder="Movie search" />
+          <button type="submit">Search</button>
+        </Form>
+        {movies.length !== 0 && (
+          <List>
+            {movies.map(({ id, title, poster_path }) => {
+              return (
+                <li key={id}>
+                  <Link to={`${id}`} state={{ from: location }}>
+                    <Img
+                      src={poster_path ? IMG_PATH + poster_path : DEFAULT_IMG}
+                      alt={title}
+                      loading="lazy"
+                    />
+                    <p>{title.toUpperCase()}</p>
+                  </Link>
+                </li>
+              );
+            })}
+          </List>
+        )}
+        {status === 'pending' && <Loader />}
       </div>
     </>
   );
