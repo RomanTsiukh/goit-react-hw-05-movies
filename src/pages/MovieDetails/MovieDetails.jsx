@@ -1,12 +1,13 @@
 import { useParams, Outlet, useLocation, Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
+import { TbArrowBigLeft } from 'react-icons/tb';
 import { getMovieById } from 'services/api';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { Box } from 'components/Box';
 import { Linka, BoxInformation, Title, Href } from './MovieDetails.styled';
-import { TbArrowBigLeft } from 'react-icons/tb';
+import Loader from 'components/Loader/Loader';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
@@ -58,7 +59,9 @@ export const MovieDetails = () => {
               </li>
             </ul>
           </BoxInformation>
-          <Outlet />
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </div>
       )}
       {status === 'rejected' && (
@@ -70,3 +73,5 @@ export const MovieDetails = () => {
     </Box>
   );
 };
+
+export default MovieDetails;
